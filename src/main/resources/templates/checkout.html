@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+  <head>
+    <title>Checkout</title>
+    <link rel="stylesheet" th:href="@{/styles/general.css}" />
+    <link rel="stylesheet" th:href="@{/styles/header.css}" />
+    <link rel="stylesheet" th:href="@{/styles/header-login.css}" />
+    <link rel="stylesheet" th:href="@{/styles/contacts.css}" />
+    <link rel="stylesheet" th:href="@{/styles/checkout.css}" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;0,900;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <!-- HEADER START -->
+    <div class="header">
+      <div class="container header-content">
+        <div class="menu-section">
+          <img class="hamburger-menu-icon" th:src="@{/icons/hamburger-menu.png}" />
+        </div>
+        <img class="logo_fixerpro" th:src="@{/icons/logo_fixerpro.png}" />
+        <div class="right-section">
+          <div class="header-account">
+            <img class="login-icon" th:src="@{/icons/login-icon.png}" />
+            <div class="login-dropdown-box-container">
+              <div class="login-dropdown-box">
+                <div class="logged-in-box" sec:authorize="isAuthenticated()">
+                  <div class="greet-user">Hello, <span sec:authentication="principal.username"></span></div>
+                  <div class="avatar-container">
+                    <img class="avatar-icon" th:src="@{/icons/avatar-icon.png}" />
+                  </div>
+                  <form class="header-logout-form" action="#" th:action="@{/logout}" method="POST">
+                    <input type="submit" value="Logout" class="header-logout-btn" />
+                  </form>
+                </div>
+                <div class="logged-out-box" sec:authorize="isAnonymous()">
+                  <div class="greet-user">
+                    My Account
+                  </div>
+                  <div class="header-logout-form">
+                    <a th:href="@{/my-login}">
+                      <button class="header-logout-btn header-login-btn">
+                        Sign in
+                      </button>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <img class="cart" id="cart" th:src="@{/icons/cart.png}" />
+          <span class="cart-quantity" id="cart-quantity"></span>
+          <!-- Cart Block -->
+          <div class="cart-block" id="cart-block">
+            <div class="cart-items-container"></div>
+            <div class="cart-total-container">
+              <p class="cart-total">Total:</p>
+              <p class="cart-total-price">100 BGN</p>
+            </div>
+            <button class="order">Order</button>
+            <button class="btn close">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- HEADER END -->
+    <div class="container">
+      <h3>COMPLETE ORDER</h3>
+      <div class="checkout-info">
+        <h4>DELIVERY DETAILS</h4>
+        <p class="mandatory-fields"><span class="asterix">*</span> Mandatory fields</p>
+        <div class="input-row">
+          <p class="input-title">Name and surname <span class="asterix">*</span></p>
+          <input type="text" id="name-surname" />
+        </div>
+        <div class="input-row">
+          <p class="input-title">Telephone <span class="asterix">*</span></p>
+          <input type="text" id="telephone" />
+        </div>
+        <h4>DELIVERY METHOD</h4>
+        <div class="input-row">
+          <p class="input-title">Speedy - to door</p>
+          <input type="radio" name="deliveryMethod" class="radio-button" id="radio-door" value="Speedy - to door" />
+          <div class="input-row deliver-row" id="address-door-row">
+            <p class="input-title">Address and city <span class="asterix">*</span></p>
+            <input type="text" id="address-door" />
+          </div>
+        </div>
+        <div class="input-row">
+          <p class="input-title">Speedy - to office</p>
+          <input type="radio" name="deliveryMethod" class="radio-button" id="radio-office" value="Speedy - to office" />
+          <div class="input-row deliver-row" id="address-office-row">
+            <p class="input-title">Address and city <span class="asterix">*</span></p>
+            <input type="text" id="address-office" />
+          </div>
+        </div>
+        <h4>ADDITIONAL INFORMATION</h4>
+        <p class="input-title">Comment</p>
+        <textarea class="comment" cols="20" rows="5"></textarea>
+        <button class="complete-order">COMPLETE THE ORDER</button>
+      </div>
+      <div class="basketsummer">
+        <h4 class="bs-order">ORDER</h4>
+        <div class="bs-info">
+          <p class="bs-title">Products</p>
+          <p class="bs-value">0</p>
+          <p class="bs-total-title">Total</p>
+          <p class="bs-total-value">0 BGN</p>
+        </div>
+        <div class="complete-order-container">
+          <button class="complete-order">COMPLETE THE ORDER</button>
+        </div>
+      </div>
+    </div>
+    <div class="container contacts">
+      <div class="contacts-col">
+        <p class="contacts-heading">MY ORDER</p>
+        <a class="contacts-link">Order status</a>
+        <a class="contacts-link">Privacy Policy</a>
+        <a class="contacts-link">General terms</a>
+        <a class="contacts-link">Delivery</a>
+        <a class="contacts-link">Buy on credit</a>
+      </div>
+      <div class="contacts-col">
+        <p class="contacts-heading">CONTACTS</p>
+        <a class="contacts-link">FixerPRO</a>
+        <a class="contacts-link">Josef-Orlopp-Straße 55</a>
+        <a class="contacts-link">10365 Berlin</a>
+        <p class="contacts-text">Germany</p>
+        <a class="contacts-link">Telephone: +44 12 3456 7890</a>
+        <a class="contacts-link">Email: info@fixerpro.com</a>
+      </div>
+      <div class="contacts-col">
+        <p class="contacts-heading">WORK TIME</p>
+        <p class="contacts-text">Monday - Sunday</p>
+        <p class="contacts-text">Open 24 hours</p>
+      </div>
+    </div>
+    <script src="https://www.google.com/recaptcha/api.js?render=YOUR_SITE_KEY"></script>
+    <script th:src="@{/js/header/header.js}" type="module"></script>
+    <script th:src="@{/js/checkout.js}" type="module"></script>
+  </body>
+</html>

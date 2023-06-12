@@ -1,0 +1,17 @@
+.sign-up-grid {
+  margin-top: 20px;
+  display: none;
+}
+
+#sign-up-error-text {
+  display: none;
+}
+
+.recaptcha-container {
+  margin-top: 20px;
+  margin-left: 200px;
+}
+
+.sign-up-btn {
+  background-color: #5faf4b;
+}

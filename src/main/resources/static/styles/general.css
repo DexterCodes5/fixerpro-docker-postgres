@@ -1,0 +1,31 @@
+body {
+  background: #f3f3f3;
+  padding-top: 80px;
+  font-family: Roboto, Arial; /* this font will be inherited by all
+  elements in the body */
+}
+
+a {
+  text-decoration: none;
+}
+
+.container {
+  max-width: 1280px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.main-grid {
+  background-color: white;
+  display: flex;
+  gap: 20px;
+  padding: 5px;
+}
+
+.btn {
+  background-color: rgb(255, 128, 0);
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 3px 12px;
+}

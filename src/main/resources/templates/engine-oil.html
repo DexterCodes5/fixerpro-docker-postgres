@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html 
+xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Engine Oils</title>
+    <link rel="stylesheet" th:href="@{/styles/general.css}" />
+    <link rel="stylesheet" th:href="@{/styles/products.css}" />
+    <link rel="stylesheet" th:href="@{/styles/header.css}" />
+    <link rel="stylesheet" th:href="@{/styles/header-login.css}" />
+    <link rel="stylesheet" th:href="@{/styles/contacts.css}" />
+    <link rel="stylesheet" th:href="@{/styles/pagination.css}" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;0,900;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <!-- HEADER START -->
+    <div class="header">
+      <div class="container header-content">
+        <div class="menu-section">
+          <img class="hamburger-menu-icon" th:src="@{/icons/hamburger-menu.png}" />
+        </div>
+        <img class="logo_fixerpro" th:src="@{/icons/logo_fixerpro.png}" />
+        <div class="right-section">
+          <div class="header-account">
+            <img class="login-icon" th:src="@{/icons/login-icon.png}">
+            <div class="login-dropdown-box-container">
+              <div class="login-dropdown-box">
+                <div class="logged-in-box" sec:authorize="isAuthenticated()">
+                  <div class="greet-user">
+                    Hello, <span sec:authentication="principal.username"></span>
+                  </div>
+                  <div class="avatar-container">
+                    <img class="avatar-icon" th:src="@{/icons/avatar-icon.png}" />
+                  </div>
+                  <div sec:authorize="hasRole('ADMIN')" class="header-logout-form">
+                    <a th:href="@{/fixerpro/admin/engine-oil}">
+                      <button class="header-logout-btn">Admin Page</button>
+                    </a>
+                  </div>
+                  <form class="header-logout-form" action="#" th:action="@{/logout}" method="POST">
+                    <input type="submit" value="Logout" class="header-logout-btn" />
+                  </form>
+                </div>
+                <div class="logged-out-box" sec:authorize="isAnonymous()">
+                  <div class="greet-user">
+                    My Account
+                  </div>
+                  <div class="header-logout-form">
+                    <a th:href="@{/fixerpro/my-login}">
+                      <button class="header-logout-btn header-login-btn">
+                        Sign in
+                      </button>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <img class="cart" id="cart" th:src="@{/icons/cart.png}" />
+          <span class="cart-quantity" id="cart-quantity"></span>
+          <!-- Cart Block -->
+          <div class="cart-block" id="cart-block">
+            <div class="cart-items-container"></div>
+            <div class="cart-total-container">
+              <p class="cart-total">Total:</p>
+              <p class="cart-total-price">100 BGN</p>
+            </div>
+            <button class="order">Order</button>
+            <button class="btn close">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- HEADER END -->
+    <div class="container main-grid">
+      <div class="oil-left-section">
+        <div class="choose-section">
+          <p class="choose-btn">Engine Oil</p>
+          <p class="choose-btn">Filters</p>
+        </div>
+        <div class="filter-section">
+          <h3 class="filter-heading">Filter</h3>
+          <p class="filter-section-heading">Brand</p>
+          <div>
+            <input type="checkbox" id="brand-castrol" value="castrol" class="filter-brand" />
+            <label for="brand-castrol" class="checkbox-label">Castrol</label>
+          </div>
+          <div>
+            <input type="checkbox" id="brand-mobil" value="mobil" class="filter-brand" />
+            <label for="brand-mobil">Mobil</label>
+          </div>
+          <div>
+            <input type="checkbox" id="brand-motul" value="motul" class="filter-brand" />
+            <label for="brand-motul">Motul</label>
+          </div>
+          <p class="filter-section-heading">Liters</p>
+          <div>
+            <input type="checkbox" id="liters-1" value="1" class="filter-liter" />
+            <label for="liters-1" class="checkbox-label">1L</label>
+          </div>
+          <div>
+            <input type="checkbox" id="liters-5" value="5" class="filter-liter" />
+            <label for="liters-5">5L</label>
+          </div>
+        </div>
+      </div>
+      <div class="oil-middle-section">
+        <div class="description">
+          <h2>Engine Oil</h2>
+          <p>
+            Engine oil is extremely important for our car. It should in no way be underestimated and we should be well informed about the product we choose. The main function we all associate it with is lubrication, which results in high
+            power and longer engine life. Besides him, however, there are others that are no less important.
+          </p>
+        </div>
+        <div class="products-section">
+          <div class="product" th:each="engineOil : ${engineOils}">
+            <span th:text="${engineOil.id}" style="display: none;" class="id"></span>
+            <div class="thumbnail-container">
+              <img class="thumbnail" th:src="@{${engineOil.thumbnail}}" />
+            </div>
+            <p class="product-title" th:text="${engineOil.title}"></p>
+            <p class="price" th:text="${engineOil.price} + ' BGN'"></p>
+            <div>
+              <button class="btn-add-to-cart">Buy</button>
+            </div>
+          </div>
+        </div>
+        <div class="pagination-container">
+          <button class="pagination-button" id="prev-button" title="Previous page">
+            &lt;
+            <!-- this is < -->
+          </button>
+
+          <div id="pagination-numbers"></div>
+
+          <button class="pagination-button" id="next-button" title="Next page">
+            &gt;
+            <!-- this is > -->
+          </button>
+        </div>
+      </div>
+      <section class="oil-right-section">
+        <div class="oil-right-contacts">
+          <p>FixerPRO</p>
+          <p>Josef-Orlopp-Straße 55</p>
+          <p>10365 Berlin</p>
+          <p>Germany</p>
+          <p>Telephone: +44 12 3456 7890</p>
+          <p>Email: info@fixerpro.com</p>
+        </div>
+        <img class="oil-right-image" th:src="@{/images/castrol-logo.png}">
+      </section>
+    </div>
+    <div class="container contacts">
+      <div class="contacts-col">
+        <p class="contacts-heading">MY ORDER</p>
+        <a class="contacts-link">Order status</a>
+        <a class="contacts-link">Privacy Policy</a>
+        <a class="contacts-link">General terms</a>
+        <a class="contacts-link">Delivery</a>
+        <a class="contacts-link">Buy on credit</a>
+      </div>
+      <div class="contacts-col">
+        <p class="contacts-heading">CONTACTS</p>
+        <a class="contacts-link">FixerPRO</a>
+        <a class="contacts-link">Josef-Orlopp-Straße 55</a>
+        <a class="contacts-link">10365 Berlin</a>
+        <p class="contacts-text">Germany</p>
+        <a class="contacts-link">Telephone: +44 12 3456 7890</a>
+        <a class="contacts-link">Email: info@fixerpro.com</a>
+      </div>
+      <div class="contacts-col">
+        <p class="contacts-heading">WORK TIME</p>
+        <p class="contacts-text">Monday - Sunday</p>
+        <p class="contacts-text">Open 24 hours</p>
+      </div>
+    </div>
+    <span id="oils-length" style="display: none;" th:text="${engineOilsLength}"></span>
+    <script th:src="@{/js/header/header.js}" type="module"></script>
+    <script th:src="@{/js/engine-oil/engine-oil.js}" type="module"></script>
+    <script th:src="@{/js/engine-oil/filter-engine-oil.js}" type="module"></script>
+  </body>
+</html>

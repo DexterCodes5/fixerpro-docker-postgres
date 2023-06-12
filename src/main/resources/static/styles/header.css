@@ -1,0 +1,167 @@
+.header {
+  align-items: center;
+  background-color: black;
+  border-bottom: 1px solid black;
+  display: flex;
+  position:fixed;
+  top: 0;
+  left:0;
+  right: 0;
+  height: 60px;
+  padding-top: 25px;
+  z-index: 10;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+}
+
+.menu-section {
+  display: none;
+}
+
+.hamburger-menu-icon {
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+}
+
+.logo_fixerpro {
+  cursor: pointer;
+  height: 50px;
+  margin-right: 44%;
+}
+
+.right-section {
+  align-items: center;
+  display: flex;
+  gap: 20px;
+  position: relative;
+}
+
+.cart {
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+}
+
+.cart-quantity {
+  background-color: rgb(220, 20, 20);
+  border-radius: 20px;
+  color: white;
+  pointer-events: none;
+  position: absolute;
+  top: 4px;
+  right: -13px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  padding-left: 6px;
+  padding-right: 6px;
+  font-size: 12px;
+}
+
+.cart-block {
+  background-color: white;
+  border: 1px solid rgb(149, 149, 149);
+  width: 260px;
+  position: absolute;
+  top: 45px;
+  right: -15px;
+  display: none;
+}
+
+.cart-items-container {
+  overflow-y: auto;
+  max-height: 200px;
+}
+
+.cart-item {
+  border-bottom: 1px solid rgb(194, 194, 194);
+  height: 75px;
+  padding-top: 10px;
+}
+
+.cart-item-thumbnail {
+  height: 60px;
+  width: 52px;
+  margin-left: 10px;
+  vertical-align: top; /* important */
+}
+
+.cart-item-info {
+  display: inline-block;
+  margin-right: 5px;
+  margin-left: 5px;
+  width: 140px;
+  vertical-align: top; /* important */
+}
+
+.cart-item-title {
+  font-size: 10px;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.cart-item-quantity {
+  color: grey;
+  margin-top: 5px;
+  margin-bottom: 0;
+  font-size: 10px;
+}
+
+.cart-item-price {
+  color: rgb(255, 128, 0);
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 10px;
+}
+
+.thrash {
+  cursor: pointer;
+  height: 20px;
+}
+
+.cart-total-container {
+  border-bottom: 1px solid rgb(194, 194, 194);
+}
+
+.cart-total {
+  display: inline-block;
+  margin-left: 6px;
+  width: 50%;
+}
+
+.cart-total-price {
+  display: inline-block;
+  text-align: right;
+  width: 40%;
+}
+
+.order {
+  background-color: rgb(179, 179, 179);
+  border: none;
+  color: white;
+  cursor: not-allowed;
+  /*display: block;*/
+  padding: 3px 12px;
+  margin: 10px;
+}
+
+.close {
+  margin-left: 100px;
+}
+
+@media(max-width: 1000px) {
+
+  .header-content {
+    margin-left: 10px;
+    margin-right: 20px;
+  }
+
+  .menu-section {
+    display: inline;
+  }
+
+  
+}

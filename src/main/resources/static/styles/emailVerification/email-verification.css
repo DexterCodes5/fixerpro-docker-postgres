@@ -1,0 +1,36 @@
+.email-verification-container {
+  display: flex;
+  justify-content: center;
+  height: 55vh;
+}
+
+.email-verification-dialog {
+  align-items: center;
+  background-color: white;
+  display: flex;
+  margin-top: 20px;
+  width: 400px;
+  height: fit-content;
+  padding: 20px;
+  flex-direction: column;
+}
+
+.email-verification-tick {
+  height: 80px;
+}
+
+.email-verificaiton-btn-container {
+  height: fit-content;
+}
+
+.email-verificaiton-btn {
+  background-color: rgb(255, 128, 0);
+  border: none;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+  display: block;
+  width: fit-content;
+  padding: 10px;
+  text-decoration: none;
+}

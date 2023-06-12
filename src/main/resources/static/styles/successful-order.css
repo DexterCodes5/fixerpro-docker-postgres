@@ -1,0 +1,33 @@
+.successful-order-right-section {
+  flex: 1;
+}
+
+.successful-order-container {
+  background-color: rgba(0, 203, 0, 0.507);
+  height: 200px;
+  padding: 10px;
+  text-align: center;
+}
+
+.successful-order-row {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.row-text {
+  width: fit-content;
+}
+
+.successful-order-reviews {
+  background-color: rgb(255, 238, 218);
+  padding: 20px 50px;
+}
+
+.stars {
+  color: rgb(255, 225, 0);
+  font-size: 20px;
+  margin-top: 0;
+  margin-bottom: 0;
+}
